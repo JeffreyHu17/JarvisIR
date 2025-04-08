@@ -1,6 +1,6 @@
 <div align="center">
 <div align="center">
-  <img src="/home/wkr/workspace/workspace_lyl/OpenSource/JarvisIR/assets/icon.png" alt="JarvisIR Logo" width="100px">
+  <img src="assets/icon.png" alt="JarvisIR Logo" width="100px">
   <h1>[CVPR' 2025] JarvisIR: Elevating Autonomous Driving Perception with Intelligent Image Restoration</h1>
 </div>
 
