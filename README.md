@@ -8,7 +8,7 @@ with Intelligent Image Restoration</h1>
 <!-- <a href="#"><img src="https://img.shields.io/badge/arXiv-即将发布-b31b1b" alt="arXiv"></a> -->
 <a href="https://cvpr2025-jarvisir.github.io/"><img src="https://img.shields.io/badge/Project-Page-green" alt="Project Page"></a>
 <a href="#"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Coming%20Soon-blue" alt="Demo"></a>
-<a href="https://github.com/"><img src="https://img.shields.io/badge/GitHub-Code-black" alt="Code"></a>
+<a href="https://github.com/LYL1015/JarvisIR?tab=readme-ov-file/"><img src="https://img.shields.io/badge/GitHub-Code-black" alt="Code"></a>
 
 <!-- **提升自动驾驶感知能力的智能图像恢复技术** -->
 
