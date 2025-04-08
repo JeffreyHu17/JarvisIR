@@ -1,6 +1,8 @@
 <div align="center">
-<h1>[CVPR' 2025] JarvisIR: Elevating Autonomous Driving Perception
-with Intelligent Image Restoration</h1>
+<div align="center">
+  <img src="/home/wkr/workspace/workspace_lyl/OpenSource/JarvisIR/assets/icon.png" alt="JarvisIR Logo" width="100px">
+  <h1>[CVPR' 2025] JarvisIR: Elevating Autonomous Driving Perception with Intelligent Image Restoration</h1>
+</div>
 
 <a href="https://arxiv.org/pdf/2504.04158" target="_blank" rel="noopener noreferrer">
   <img src="https://img.shields.io/badge/Paper-JarvisIR-b31b1b" alt="Paper PDF">
