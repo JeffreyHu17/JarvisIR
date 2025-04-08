@@ -4,7 +4,7 @@
   <h1>[CVPR' 2025] JarvisIR: Elevating Autonomous Driving Perception with Intelligent Image Restoration</h1>
 </div>
 
-<a href="https://arxiv.org/pdf/2504.04158" target="_blank" rel="noopener noreferrer">
+<a href="https://lyl1015.github.io/papers/CVPR2025_JarvisIR.pdf" target="_blank" rel="noopener noreferrer">
   <img src="https://img.shields.io/badge/Paper-JarvisIR-b31b1b" alt="Paper PDF">
 </a>
 <!-- <a href="#"><img src="https://img.shields.io/badge/arXiv-即将发布-b31b1b" alt="arXiv"></a> -->
