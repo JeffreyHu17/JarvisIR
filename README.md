@@ -36,6 +36,50 @@ JarvisIR (CVPR 2025) is a VLM-powered agent designed to tackle the challenges of
   <img src="assets/teaser1.png" alt="JarvisIR Teaser" width="800px">
 </div>
 
+## :rocket: Method
+
+JarvisIR implements an innovative two-stage framework that leverages a Vision-Language Model (VLM) as a controller to manage multiple expert restoration models:
+
+1. **Supervised Fine-tuning Stage**: JarvisIR undergoes supervised fine-tuning on synthetic data from CleanBench to enable it to follow user instructions and recognize image degradation. This initial training allows the model to identify various types of image degradation and select appropriate restoration strategies.
+
+2. **Human Feedback Alignment Stage**: We further finetune JarvisIR on CleanBench-Real using the MRRHF algorithm to improve system robustness, reduce hallucinations, and enhance generalizability under real-world adverse weather conditions. This stage ensures the model makes decisions that align with human expectations in complex real-world scenarios.
+
+The core advantage of JarvisIR lies in its ability to handle multiple complex, coupled weather degradations and provide stable, reliable image inputs for autonomous driving perception systems.
+
+<div align="center">
+  <img src="assets/framework.png" alt="JarvisIR Method" width="800px">
+  <p>Two-stage training framework of JarvisIR: The VLM controller analyzes input images, selects and coordinates expert models for optimal restoration</p>
+</div>
+
+## :bar_chart: CleanBench Dataset
+
+To support the training and evaluation of JarvisIR, we introduce CleanBench, the first high-quality instruction-following dataset specifically curated for developing intelligent restoration systems. CleanBench contains **150K** synthetic and **80K** real instruction-response pairs, providing a comprehensive foundation for training and evaluating intelligent image restoration systems.
+
+### Dataset Construction
+
+The CleanBench dataset construction workflow consists of three main steps:
+
+1. **Synthesis of Degraded Images**: We generate a diverse set of degraded images by applying various weather conditions and degradation types to clean images, creating realistic scenarios that autonomous driving systems might encounter.
+
+2. **Generation of Assessment Reasoning and Optimal Task Sequence**: For each degraded image, we generate detailed assessments of the degradation types present and determine the optimal sequence of restoration tasks needed to effectively restore the image.
+
+3. **Generation of Instruction-Response Pairs**: Based on the degradation assessment and restoration sequence, we create comprehensive instruction-response pairs that guide the model in understanding user requests and providing appropriate restoration solutions.
+
+<div align="center">
+  <img src="assets/datasets.png" alt="CleanBench Dataset Construction" width="800px">
+  <p>CleanBench dataset construction workflow: from degraded image synthesis to instruction-response pair generation</p>
+</div>
+
+### Dataset Features
+
+- **Comprehensive Coverage**: Includes various weather conditions (rain, snow, fog, night) and their combinations
+- **High-Quality Annotations**: Detailed degradation assessments and optimal restoration sequences
+- **Real-World Validation**: 80K real-world examples to ensure model generalization
+- **Instruction Diversity**: Multiple instruction formats to enhance model adaptability
+
+CleanBench serves as a crucial resource for training and evaluating intelligent image restoration systems, enabling models like JarvisIR to make informed decisions about restoration strategies in complex real-world scenarios.
+
+
 
 ## :circus_tent: Checklist
 
