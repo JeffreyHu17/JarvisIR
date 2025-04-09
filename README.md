@@ -12,16 +12,22 @@
 <a href="#"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Coming%20Soon-blue" alt="Demo"></a>
 <a href="https://github.com/LYL1015/JarvisIR?tab=readme-ov-file/"><img src="https://img.shields.io/badge/GitHub-Code-black" alt="Code"></a>
 
-<!-- **提升自动驾驶感知能力的智能图像恢复技术** -->
-
-<!-- **[厦门大学](https://www.xmu.edu.cn/)** | **[香港科技大学（广州）](https://hkust-gz.edu.cn/)** | **[字节跳动Pico](https://www.picoxr.com/)** | **[腾讯](https://www.tencent.com/)** | **[华为诺亚方舟实验室](https://www.huawei.com/)** | **[香港中文大学](https://www.cuhk.edu.hk/)** -->
-
 
 [Yunlong Lin](https://lyl1015.github.io/)<sup>1*♣</sup>, [Zixu Lin](https://github.com/)<sup>1*♣</sup>, [Haoyu Chen](https://haoyuchen.com/)<sup>2*</sup>, [Panwang Pan](https://paulpanwang.github.io/)<sup>3*</sup>, [Chenxin Li](https://chenxinli001.github.io/)<sup>6</sup>, [Sixiang Chen](https://ephemeral182.github.io/)<sup>2</sup>, [Kairun Wen](https://kairunwen.github.io/)<sup>1</sup>, [Yeying Jin](https://jinyeying.github.io/)<sup>4</sup>, [Wenbo Li](https://fenglinglwb.github.io/)<sup>5†</sup>, [Xinghao Ding](https://scholar.google.com/citations?user=k5hVBfMAAAAJ&hl=zh-CN)<sup>1†</sup>
 
 <sup>1</sup>Xiamen University, <sup>2</sup>The Hong Kong University of Science and Technology (Guangzhou), <sup>3</sup>Bytedance's Pico, <sup>4</sup>Tencent, <sup>5</sup>Huawei Noah's Ark Lab, <sup>6</sup>The Chinese University of Hong Kong
 <!-- <sup>*</sup>Equal Contribution <sup>♣</sup>Equal Contribution <sup>†</sup>Corresponding Author -->
 Accepted by CVPR 2025
+
+<div align="center">
+  <video width="800" controls>
+    <source src="assets/demo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <p>JarvisIR Demo Video: Showcasing image restoration capabilities under various adverse weather conditions</p>
+</div>
+
+
 </div>
 
 
@@ -74,7 +80,7 @@ The CleanBench dataset construction workflow consists of three main steps:
 
 - **Comprehensive Coverage**: Includes various weather conditions (rain, snow, fog, night) and their combinations
 - **High-Quality Annotations**: Detailed degradation assessments and optimal restoration sequences
-- **Real-World Validation**: 80K real-world examples to ensure model generalization
+- **Real-World Examples**: 80K real-world examples to ensure model generalization
 - **Instruction Diversity**: Multiple instruction formats to enhance model adaptability
 
 CleanBench serves as a crucial resource for training and evaluating intelligent image restoration systems, enabling models like JarvisIR to make informed decisions about restoration strategies in complex real-world scenarios.
