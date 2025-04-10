@@ -19,14 +19,14 @@
 <!-- <sup>*</sup>Equal Contribution <sup>♣</sup>Equal Contribution <sup>†</sup>Corresponding Author -->
 Accepted by CVPR 2025
 
-<div align="center">
+<!-- <div align="center">
   <video width="800" controls>
     <source src="assets/demo.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
   <p>JarvisIR Demo Video: Showcasing image restoration capabilities under various adverse weather conditions</p>
-</div>
-
+</div> -->
+https://github.com/user-attachments/assets/d9094fba-e24c-403e-90cb-b3d2f6e48939
 
 
 </div>
@@ -94,6 +94,14 @@ CleanBench serves as a crucial resource for training and evaluating intelligent 
 - [ ] Release Hugging Face demo
 - [ ] Release CleanBench data
 - [ ] Release training code
+
+
+## :pray: Acknowledgements
+
+We would like to express our gratitude to [HuggingGPT](https://github.com/microsoft/JARVIS), [XTuner](https://github.com/InternLM/xtuner), and [RRHF](https://github.com/GanjinZero/RRHF) for their valuable open-source contributions which have provided important technical references for our work.
+
+
+
 
 ## :love_you_gesture: Citation
 ```bibtex
