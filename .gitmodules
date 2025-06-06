@@ -1,0 +1,7 @@
+[submodule "dependences/BasicSR"]
+	path = dependences/BasicSR
+	url = https://github.com/XPixelGroup/BasicSR.git
+[submodule "src/sft/xtuner"]
+	path = src/sft/xtuner
+	url = https://github.com/InternLM/xtuner.git
+	branch = v0.1.23

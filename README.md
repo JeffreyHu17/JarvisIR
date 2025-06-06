@@ -86,14 +86,48 @@ The CleanBench dataset construction workflow consists of three main steps:
 
 CleanBench serves as a crucial resource for training and evaluating intelligent image restoration systems, enabling models like JarvisIR to make informed decisions about restoration strategies in complex real-world scenarios.
 
+## :computer: Getting Started
+
+For sft training and environment setup preparation, please follow:
+
+- [SFT Training](./docs/sft_training.md)
+<!-- - [Dataset Preparation](./docs/dataset_preparation.md) -->
+<!-- 
+For sft training, please follow:
+
+- [SFT Training](./docs/sft_training.md) -->
+
+For gradio demo runing, please follow:
+
+- [Gradio Demo](./docs/gradio_demo.md)
+
+
+## :toolbox: Expert Models
+
+JarvisIR integrates multiple expert restoration models to handle various types of image degradation:
+
+| Task | Model | Description |
+|------|-------|-------------|
+| **Super-resolution** | Real-ESRGAN | Fast GAN-based model for super-resolution, deblurring, and artifact removal |
+| **Denoising** | SCUNet | Hybrid UNet-based model combining convolution and transformer blocks for robust denoising |
+| **Deraining** | UDR-S2Former | Uncertainty-aware transformer model for rain streak removal |
+|  | Img2img-turbo-rain | Efficient SD-turbo based model for fast and effective rain removal |
+| **Raindrop removal** | IDT | Transformer-based model for de-raining and raindrop removal |
+| **Dehazing** | RIDCP | Efficient dehazing model utilizing high-quality codebook priors |
+|  | KANet | Efficient dehazing network using a localization-and-removal pipeline |
+| **Desnowing** | Img2img-turbo-snow | Efficient model for removing snow artifacts while preserving natural scene details |
+|  | Snowmaster | Real-world image desnowing via MLLM with multi-model feedback optimization |
+| **Low-light enhancement** | Retinexformer | One-stage Retinex-based Transformer for low-light image enhancement |
+|  | HVICIDNet | Lightweight transformer for low-light and exposure correction |
+|  | LightenDiff | Diffusion-based framework for low-light enhancement |
 
 
 ## :circus_tent: Checklist
 
-- [ ] Release inference code
+- [x] Release preview inference code and gradio demo
+- [x] Release SFT training code
 - [ ] Release Hugging Face demo
 - [ ] Release CleanBench data
-- [ ] Release training code
 
 
 ## :pray: Acknowledgements
