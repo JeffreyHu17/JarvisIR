@@ -60,7 +60,7 @@
 ## :postbox: Updates
 <!-- - 2023.12.04: Add an option to speed up the inference process by adjusting the number of denoising steps. -->
 <!-- - 2024.2.9: Release our demo codes and models. Have fun! :yum: -->
-- 2025.6.9: Released Gradio demo, restoration tools and SFT training code..
+- 2025.6.9: Released Gradio demo, restoration tools and SFT training code.
 - 2025.4.8: This repo is created.
 
 ## 🧭 Navigation
