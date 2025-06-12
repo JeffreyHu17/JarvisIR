@@ -4,20 +4,39 @@
   <img src="assets/icon.png" alt="JarvisIR Logo" width="100px">
 </div>
 
-<a href="https://lyl1015.github.io/papers/CVPR2025_JarvisIR.pdf" target="_blank" rel="noopener noreferrer">
-  <img src="https://img.shields.io/badge/Paper-JarvisIR-b31b1b" alt="Paper PDF">
-</a>
-<!-- <a href="#"><img src="https://img.shields.io/badge/arXiv-即将发布-b31b1b" alt="arXiv"></a> -->
-<a href="https://cvpr2025-jarvisir.github.io/"><img src="https://img.shields.io/badge/Project-Page-green" alt="Project Page"></a>
-<a href="#"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Coming%20Soon-blue" alt="Demo"></a>
-<a href="https://github.com/LYL1015/JarvisIR?tab=readme-ov-file/"><img src="https://img.shields.io/badge/GitHub-Code-black" alt="Code"></a>
-<a href="https://github.com/LYL1015/JarvisIR/blob/main/docs/gradio_demo.md"><img src="https://img.shields.io/badge/Gradio-Demo-orange" alt="Gradio Demo"></a>
+<div align="center">
+  <a href="https://lyl1015.github.io/papers/CVPR2025_JarvisIR.pdf" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Paper-JarvisIR-b31b1b" alt="Paper PDF">
+  </a>
+  <!-- <a href="#"><img src="https://img.shields.io/badge/arXiv-即将发布-b31b1b" alt="arXiv"></a> -->
+  <a href="https://cvpr2025-jarvisir.github.io/"><img src="https://img.shields.io/badge/Project-Page-green" alt="Project Page"></a>
+  <a href="#"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Coming%20Soon-blue" alt="Demo"></a>
+  <a href="https://github.com/LYL1015/JarvisIR?tab=readme-ov-file/"><img src="https://img.shields.io/badge/GitHub-Code-black" alt="Code"></a>
+  <a href="https://github.com/LYL1015/JarvisIR/blob/main/docs/gradio_demo.md"><img src="https://img.shields.io/badge/Gradio-Demo-orange" alt="Gradio Demo"></a>
+</div>
 
-[Yunlong Lin](https://lyl1015.github.io/)<sup>1*♣</sup>, [Zixu Lin](https://github.com/LYL1015/JarvisIR)<sup>1*♣</sup>, [Haoyu Chen](https://haoyuchen.com/)<sup>2*</sup>, [Panwang Pan](https://paulpanwang.github.io/)<sup>3*</sup>, [Chenxin Li](https://chenxinli001.github.io/)<sup>6</sup>, [Sixiang Chen](https://ephemeral182.github.io/)<sup>2</sup>, [Kairun Wen](https://kairunwen.github.io/)<sup>1</sup>, [Yeying Jin](https://jinyeying.github.io/)<sup>4</sup>, [Wenbo Li](https://fenglinglwb.github.io/)<sup>5†</sup>, [Xinghao Ding](https://scholar.google.com/citations?user=k5hVBfMAAAAJ&hl=zh-CN)<sup>1†</sup>
+<div align="center">
+  <p>
+    <a href="https://lyl1015.github.io/">Yunlong Lin</a><sup>1*♣</sup>, 
+    <a href="https://github.com/LYL1015/JarvisIR">Zixu Lin</a><sup>1*♣</sup>, 
+    <a href="https://haoyuchen.com/">Haoyu Chen</a><sup>2*</sup>, 
+    <a href="https://paulpanwang.github.io/">Panwang Pan</a><sup>3*</sup>, 
+    <a href="https://chenxinli001.github.io/">Chenxin Li</a><sup>6</sup>, 
+    <a href="https://ephemeral182.github.io/">Sixiang Chen</a><sup>2</sup>, 
+    <a href="https://kairunwen.github.io/">Kairun Wen</a><sup>1</sup>, 
+    <a href="https://jinyeying.github.io/">Yeying Jin</a><sup>4</sup>, 
+    <a href="https://fenglinglwb.github.io/">Wenbo Li</a><sup>5†</sup>, 
+    <a href="https://scholar.google.com/citations?user=k5hVBfMAAAAJ&hl=zh-CN">Xinghao Ding</a><sup>1†</sup>
+  </p>
+</div>
 
-<sup>1</sup>Xiamen University, <sup>2</sup>The Hong Kong University of Science and Technology (Guangzhou), <sup>3</sup>Bytedance's Pico, <sup>4</sup>Tencent, <sup>5</sup>Huawei Noah's Ark Lab, <sup>6</sup>The Chinese University of Hong Kong
-<!-- <sup>*</sup>Equal Contribution <sup>♣</sup>Equal Contribution <sup>†</sup>Corresponding Author -->
-Accepted by CVPR 2025
+<div align="center">
+  <p>
+    <sup>1</sup>Xiamen University, <sup>2</sup>The Hong Kong University of Science and Technology (Guangzhou), <sup>3</sup>Bytedance's Pico, <sup>4</sup>Tencent, <sup>5</sup>Huawei Noah's Ark Lab, <sup>6</sup>The Chinese University of Hong Kong
+  </p>
+  <!-- <sup>*</sup>Equal Contribution <sup>♣</sup>Equal Contribution <sup>†</sup>Corresponding Author -->
+  <p>Accepted by CVPR 2025</p>
+</div>
 
 <!-- <div align="center">
   <video width="800" controls>
@@ -35,11 +54,6 @@ Accepted by CVPR 2025
 <div align="center">
   <img src="assets/demo2.gif" alt="JarvisIR Demo" width="800px">
   <p>JarvisIR Gradio Demo: Showcasing image restoration capabilities under various adverse weather conditions</p>
-</div>
-
-
-
-
 </div>
 
 
