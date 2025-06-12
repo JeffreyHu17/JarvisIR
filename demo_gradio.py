@@ -3,17 +3,24 @@ import re
 import random
 import gradio as gr
 import torch
+import argparse
 from PIL import Image
 from transformers import AutoProcessor, LlavaForConditionalGeneration, TextIteratorStreamer
 from threading import Thread
 from agent_tools import RestorationToolkit
 
+# Parse command line arguments
+parser = argparse.ArgumentParser(description='Run JarvisIR Gradio demo')
+parser.add_argument('--model_path', type=str, required=True, help='Path to the fine-tuned LLaVA model')
+parser.add_argument('--cuda_device', type=str, default="0", help='CUDA device to use (default: 0)')
+args = parser.parse_args()
+
 # Set CUDA device
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
 # Model configuration
-# XXX: Path to the fine-tuned LLaVA model
-model_id = "" 
+# Use model path from command line arguments
+model_id = args.model_path
     
 # Available image restoration tasks and their corresponding models
 all_tasks = " {denoise: [scunet, restormer], lighten: [retinexformer_fivek, hvicidnet, lightdiff], \
