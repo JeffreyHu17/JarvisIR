@@ -25,7 +25,12 @@ Accepted by CVPR 2025
   </video>
   <p>JarvisIR Demo Video: Showcasing image restoration capabilities under various adverse weather conditions</p>
 </div> -->
-https://github.com/user-attachments/assets/d9094fba-e24c-403e-90cb-b3d2f6e48939
+<!-- https://github.com/user-attachments/assets/d9094fba-e24c-403e-90cb-b3d2f6e48939 -->
+<div align="center">
+  <img src="assets/demo1.gif" alt="JarvisIR Demo" width="800px">
+  <p></p>
+</div>
+
 <div align="center">
   <img src="assets/demo2.gif" alt="JarvisIR Demo" width="800px">
   <p>JarvisIR Gradio Demo: Showcasing image restoration capabilities under various adverse weather conditions</p>
