@@ -1,4 +1,6 @@
-# [CVPR' 2025] JarvisIR: Elevating Autonomous Driving Perception with Intelligent Image Restoration
+<div align="center">
+  <h1>[CVPR' 2025] JarvisIR: Elevating Autonomous Driving Perception with Intelligent Image Restoration</h1>
+</div>
 
 <div align="center">
   <img src="assets/icon.png" alt="JarvisIR Logo" width="100px">
