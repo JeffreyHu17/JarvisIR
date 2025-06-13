@@ -27,65 +27,26 @@ from xtuner.engine.runner import TrainLoop
 from xtuner.model import LLaVAModel
 from xtuner.utils import PROMPT_TEMPLATE
 
-#######################################################################
-#                     PART 0  Command Line Arguments                  #
-#######################################################################
-def parse_args():
-    parser = argparse.ArgumentParser(description='Train LLaVA with XTuner')
-    # 模型相关参数
-    parser.add_argument('--llm-name-or-path', type=str, default='./checkpoints/base_models/llava-llama-3-8b',
-                      help='Path to the LLM model')
-    parser.add_argument('--visual-encoder-name-or-path', type=str, default='./checkpoints/base_models/clip-vit-large-patch14-336',
-                      help='Path to the visual encoder model')
-    parser.add_argument('--pretrained-pth', type=str, default='./checkpoints/pretrained_models/preview',
-                      help='Path to the pretrained model weights')
-    
-    # 数据相关参数
-    parser.add_argument('--data-path', type=str, default='data/CleanBench/train/sft_data.json',
-                      help='Path to the training data JSON file')
-    parser.add_argument('--image-folder', type=str, default='data/CleanBench/train/images',
-                      help='Path to the image folder')
-    parser.add_argument('--evaluation-images', type=str, default='data/CleanBench/eval/images',
-                      help='Path to the evaluation images')
-    
-    # 训练相关参数
-    parser.add_argument('--max-epochs', type=int, default=2,
-                      help='Maximum number of training epochs')
-    parser.add_argument('--batch-size', type=int, default=16,
-                      help='Batch size per device')
-    parser.add_argument('--accumulative-counts', type=int, default=2,
-                      help='Gradient accumulation steps')
-    parser.add_argument('--dataloader-num-workers', type=int, default=4,
-                      help='Number of dataloader workers')
-    parser.add_argument('--lr', type=float, default=2e-5,
-                      help='Learning rate')
-    parser.add_argument('--weight-decay', type=float, default=0,
-                      help='Weight decay')
-    parser.add_argument('--max-norm', type=float, default=1,
-                      help='Gradient clipping max norm')
-    parser.add_argument('--warmup-ratio', type=float, default=0.03,
-                      help='Warmup ratio')
-    
-    # 保存与评估相关参数
-    parser.add_argument('--save-steps', type=int, default=1000,
-                      help='Save checkpoint every X steps')
-    parser.add_argument('--save-total-limit', type=int, default=2,
-                      help='Maximum number of checkpoints to keep')
-    parser.add_argument('--evaluation-freq', type=int, default=1000,
-                      help='Evaluation frequency in iterations')
-    
-    # 分布式训练相关参数
-    parser.add_argument('--deepspeed', type=str,
-                      help='DeepSpeed configuration file or preset name')
-    
-    args, _ = parser.parse_known_args()
-    return args
 
-# Parse command line arguments if this file is being executed
-if __name__ == "__main__" and sys.argv[0].endswith('llava_8b_full.py'):
-    cmd_args = parse_args()
-else:
-    cmd_args = None
+cmd_args = lambda: None
+cmd_args.llm_name_or_path = None # Path to the LLM model
+cmd_args.visual_encoder_name_or_path = None # Path to the visual encoder model
+cmd_args.pretrained_pth = None # Path to the pretrained model weights
+cmd_args.data_path = None # Path to the training data JSON file
+cmd_args.image_folder = None # Path to the image folder
+cmd_args.evaluation_images = None # Path to the evaluation images
+cmd_args.max_epochs = None # Maximum number of training epochs
+cmd_args.batch_size = None # Batch size per device
+cmd_args.accumulative_counts = None # Gradient accumulation steps
+cmd_args.dataloader_num_workers = None # Number of dataloader workers
+cmd_args.lr = None # Learning rate
+cmd_args.weight_decay = None # Weight decay
+cmd_args.max_norm = None # Gradient clipping max norm
+cmd_args.warmup_ratio = None # Warmup ratio
+cmd_args.save_steps = None # Save checkpoint every X steps
+cmd_args.save_total_limit = None # Maximum number of checkpoints to keep
+cmd_args.evaluation_freq = None # Evaluation frequency in iterations
+
 
 #######################################################################
 #                          PART 1  Settings                           #

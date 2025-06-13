@@ -22,7 +22,7 @@ pip install -e .
 cd ../dependences/BasicSR
 pip install -e .
 
-cd ../src/sft/xtuner
+cd ../../src/sft/xtuner
 
 # Install required packages
 pip install -r requirements.txt
@@ -72,32 +72,60 @@ Download the following models to the ``./checkpoints/base_models`` folder:
 
 ### 2. Training from scratch with base checkpoints
 
-XTuner allows you to specify model paths directly from the command line without modifying the configuration file. Use the following command pattern:
-
+- Modify the contents of lines 31 to 48 of the configuration file(**src/sft/llava_8b_full.py**):  
+``` python
+cmd_args = lambda: None
+cmd_args.llm_name_or_path = 'llava-llama-3-8b' # Path to the LLM model
+cmd_args.visual_encoder_name_or_path = 'clip-vit-large-patch14-336' # Path to the visual encoder model
+cmd_args.pretrained_pth = 'llava-llama-3-8b-pretrain/iter_2181.pth' # Path to the pretrained model weights
+cmd_args.data_path = None # Path to the training data JSON file
+cmd_args.image_folder = None # Path to the image folder
+cmd_args.evaluation_images = None # Path to the evaluation images
+cmd_args.max_epochs = None # Maximum number of training epochs
+cmd_args.batch_size = None # Batch size per device
+cmd_args.accumulative_counts = None # Gradient accumulation steps
+cmd_args.dataloader_num_workers = None # Number of dataloader workers
+cmd_args.lr = None # Learning rate
+cmd_args.weight_decay = None # Weight decay
+cmd_args.max_norm = None # Gradient clipping max norm
+cmd_args.warmup_ratio = None # Warmup ratio
+cmd_args.save_steps = None # Save checkpoint every X steps
+cmd_args.save_total_limit = None # Maximum number of checkpoints to keep
+cmd_args.evaluation_freq = None # Evaluation frequency in iterations
+```
+- Use the following command:  
 ```bash
-NPROC_PER_NODE=${GPU_NUM} xtuner train src/sft/llava_8b_full.py \
-    --deepspeed deepspeed_zero2 \
-    --llm-name-or-path ./checkpoints/base_models/llava-llama-3-8b \
-    --visual-encoder-name-or-path ./checkpoints/base_models/clip-vit-large-patch14-336 \
-    --data-path data/CleanBench/train/sft_data.json \
-    --image-folder data/CleanBench/train/images \
-    --evaluation-images data/CleanBench/eval/images/night/000001.png
+NPROC_PER_NODE=${GPU_NUM} xtuner train Absolute_Path/src/sft/llava_8b_full.py --deepspeed deepspeed_zero2 
 ```
 
-### 3. Training with our pretrained weights
+<!-- ### 3. Training with our pretrained weights
 
-We provide pretrained JarvisIR model weights on [HuggingFace](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/preview). Put them in your local directory structure (e.g., `./checkpoints/pretrained_models/preview`).
-
-```bash
-NPROC_PER_NODE=${GPU_NUM} xtuner train src/sft/llava_8b_full.py \
-    --deepspeed deepspeed_zero2 \
-    --llm-name-or-path ./checkpoints/base_models/llava-llama-3-8b \
-    --visual-encoder-name-or-path ./checkpoints/base_models/clip-vit-large-patch14-336 \
-    --pretrained-pth ./checkpoints/pretrained_models/preview \
-    --data-path data/CleanBench/train/sft_data.json \
-    --image-folder data/CleanBench/train/images \
-    --evaluation-images data/CleanBench/eval/images/night/000001.png
+- We provide pretrained JarvisIR model weights on [HuggingFace](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/preview). Put them in your local directory structure (e.g., `./checkpoints/pretrained_models/preview`).
+- Modify the contents of lines 31 to 48 of the configuration file(**src/sft/llava_8b_full.py**)
+``` python
+cmd_args = lambda: None
+cmd_args.llm_name_or_path = None # Path to the LLM model
+cmd_args.visual_encoder_name_or_path = None # Path to the visual encoder model
+cmd_args.pretrained_pth = './checkpoints/pretrained_models/preview' # Path to the pretrained model weights
+cmd_args.data_path = None # Path to the training data JSON file
+cmd_args.image_folder = None # Path to the image folder
+cmd_args.evaluation_images = None # Path to the evaluation images
+cmd_args.max_epochs = None # Maximum number of training epochs
+cmd_args.batch_size = None # Batch size per device
+cmd_args.accumulative_counts = None # Gradient accumulation steps
+cmd_args.dataloader_num_workers = None # Number of dataloader workers
+cmd_args.lr = None # Learning rate
+cmd_args.weight_decay = None # Weight decay
+cmd_args.max_norm = None # Gradient clipping max norm
+cmd_args.warmup_ratio = None # Warmup ratio
+cmd_args.save_steps = None # Save checkpoint every X steps
+cmd_args.save_total_limit = None # Maximum number of checkpoints to keep
+cmd_args.evaluation_freq = None # Evaluation frequency in iterations
 ```
+- Use the following command: 
+```bash
+NPROC_PER_NODE=${GPU_NUM} xtuner train Absolute_Path/src/sft/llava_8b_full.py --deepspeed deepspeed_zero2 
+``` -->
 
 
 ## Acknowledgements
