@@ -12,7 +12,7 @@
   </a>
   <!-- <a href="#"><img src="https://img.shields.io/badge/arXiv-即将发布-b31b1b" alt="arXiv"></a> -->
   <a href="https://cvpr2025-jarvisir.github.io/"><img src="https://img.shields.io/badge/Project-Page-green" alt="Project Page"></a>
-  <a href="#"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Coming%20Soon-blue" alt="Demo"></a>
+  <a href="https://huggingface.co/spaces/LYL1015/JarvisIR"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-blue" alt="Demo"></a>
   <a href="https://github.com/LYL1015/JarvisIR?tab=readme-ov-file/"><img src="https://img.shields.io/badge/GitHub-Code-black" alt="Code"></a>
   <a href="https://github.com/LYL1015/JarvisIR/blob/main/docs/gradio_demo.md"><img src="https://img.shields.io/badge/Gradio-Demo-orange" alt="Gradio Demo"></a>
 </div>
@@ -62,6 +62,7 @@
 ## :postbox: Updates
 <!-- - 2023.12.04: Add an option to speed up the inference process by adjusting the number of denoising steps. -->
 <!-- - 2024.2.9: Release our demo codes and models. Have fun! :yum: -->
+- 2025.6.13: Released [Model weights (preview version)](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/preview) and [Huggingface Online demo](https://huggingface.co/spaces/LYL1015/JarvisIR) 🤗 🚀 ✨.
 - 2025.6.9: Released Gradio demo, restoration tools and SFT training code.
 - 2025.4.8: This repo is created.
 
@@ -74,7 +75,7 @@
 - [SFT Training](./docs/sft_training.md)
 - [Restoration Tools](#toolbox-expert-models)
 - [Acknowledgements](#pray-acknowledgements)
-- [License](#page_with_curl-license)
+
 
 
 
