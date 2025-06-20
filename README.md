@@ -15,6 +15,7 @@
   <a href="https://huggingface.co/spaces/LYL1015/JarvisIR"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-blue" alt="Demo"></a>
   <a href="https://github.com/LYL1015/JarvisIR?tab=readme-ov-file/"><img src="https://img.shields.io/badge/GitHub-Code-black" alt="Code"></a>
   <a href="https://github.com/LYL1015/JarvisIR/blob/main/docs/gradio_demo.md"><img src="https://img.shields.io/badge/Gradio-Demo-orange" alt="Gradio Demo"></a>
+  <a href="https://zhuanlan.zhihu.com/p/1917871544379631147"><img src="https://img.shields.io/badge/知乎-文章-0084ff" alt="Zhihu"></a>
 </div>
 
 <div align="center">
