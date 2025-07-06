@@ -62,7 +62,7 @@
 
 ## :postbox: Updates
 <!-- - 2023.12.04: Add an option to speed up the inference process by adjusting the number of denoising steps. -->
-<!-- - 2024.2.9: Release our demo codes and models. Have fun! :yum: -->
+- 2025.7.6: Release [degradation synthesis codes](./degradation_synthesis/README.md)!
 - 2025.6.13: Released [Model weights (preview version)](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/preview) and [Huggingface Online demo](https://huggingface.co/spaces/LYL1015/JarvisIR) 🤗 🚀 ✨.
 - 2025.6.9: Released Gradio demo, restoration tools and SFT training code.
 - 2025.4.8: This repo is created.
@@ -74,6 +74,7 @@
 - [Getting Started](#computer-getting-started) 
 - [Gradio Demo](./docs/gradio_demo.md) 
 - [SFT Training](./docs/sft_training.md)
+- [Degradation Synthesis](./degradation_synthesis/README.md)
 - [Restoration Tools](#toolbox-expert-models)
 - [Acknowledgements](#pray-acknowledgements)
 
@@ -134,19 +135,18 @@ CleanBench serves as a crucial resource for training and evaluating intelligent 
 
 ## :computer: Getting Started
 
-For sft training and environment setup preparation, please follow:
-
-- [SFT Training](./docs/sft_training.md)
-<!-- - [Dataset Preparation](./docs/dataset_preparation.md) -->
-<!-- 
-For sft training, please follow:
-
-- [SFT Training](./docs/sft_training.md) -->
 
 For gradio demo runing, please follow:
 
 - [Gradio Demo](./docs/gradio_demo.md)
 
+For sft training and environment setup preparation, please follow:
+
+- [SFT Training](./docs/sft_training.md)
+
+For image degradation data synthesis, please refer to:
+
+- [Degradation Generator](./degradation_synthesis/README.md)
 
 ## :toolbox: Expert Models
 
@@ -171,8 +171,10 @@ JarvisIR integrates multiple expert restoration models to handle various types o
 ## :circus_tent: Checklist
 
 - [x] Release preview inference code and gradio demo
-- [x] Release SFT training code
-- [ ] Release Hugging Face demo
+- [x] Release SFT training 
+- [x] Release Hugging Face demo
+- [x] Release degradation synthesis code
+- [ ] Release MRRHF training code
 - [ ] Release CleanBench data
 
 
