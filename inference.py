@@ -109,8 +109,8 @@ for step, image_name in enumerate(os.listdir(args.image_folder)):
     res_text = res_text[res_text.find('<answer>'):]
     res_text = res_text[:res_text.find("<|eot_id|>")]
     score = reward_engine.get_reward(image_path, res_text)
-        
-    results[image_name] = score
+
+    results[image_name] = {"score":score, "response": res_text, "instruction": instruction}
 
 save_path = os.path.join(args.save_folder, "scores.json")
 with open(save_path, "w") as f:
