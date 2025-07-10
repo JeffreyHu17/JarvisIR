@@ -39,8 +39,19 @@ The command accepts the following parameters:
 
 This will launch a web interface at `http://0.0.0.0:7866` where you can interact with the model.
 
-## Important Notes
+> **Important Notes**
+> - Make sure the model path points to a directory containing a valid LLaVA model with all necessary files
+> - The web interface will be accessible on port 7866
+> - The tool engine requires specific restoration models which should be installed as part of the environment setup
 
-- Make sure the model path points to a directory containing a valid LLaVA model with all necessary files
-- The web interface will be accessible on port 7866
-- The tool engine requires specific restoration models which should be installed as part of the environment setup
+## Running the Inference Script
+If you want to run inference using the provided script, follow the commands below:
+
+```bash
+python inference.py --from_checkpoint ./checkpoints/pretrained/preview/ --image_folder ./data/inference/images/ --save_folder ./data/inference/results/
+```
+The command accepts the following parameters:
+- `--from_checkpoint`: Path to the model checkpoint directory (mandatory)
+- `--image_folder`: Path to the folder containing images for inference (mandatory)
+- `--save_folder`: Path to the folder where results will be saved (default is `./data/inference/results/`)
+> **Note**: The results, including JSON files with scores and the processed images, will all be saved in the specified `save_folder`.

@@ -12,17 +12,18 @@ from utils.utils import set_random_seed
 from training.rlhf_engine import RewardEngine
 from torch.utils.tensorboard import SummaryWriter
 import random
+import json
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--from_checkpoint', type=str, default=None)
-parser.add_argument('--image_folder', type=str, default=None)
+parser.add_argument('--from_checkpoint', type=str, default=None, help='Path to the model checkpoint for inference')
+parser.add_argument('--image_folder', type=str, default=None, help='Folder containing images for inference')
 parser.add_argument('--template', type=str, default='llama_3')
 parser.add_argument('--max_generation_length_of_sampling', type=int, default=384)
 parser.add_argument('--max_training_samples_num', type=int, default=10000)
 parser.add_argument('--seed', type=int, default=42)
 parser.add_argument('--data_train_split_ratio', type=float, default=1.0)
-parser.add_argument('--save_folder', type=str, default='data/inference/result')
+parser.add_argument('--save_folder', type=str, default='data/inference/result', help='Folder to save the results')
 parser.add_argument('--per_device_train_batch_size', type=int, default=1)
 parser.add_argument('--gradient_accumulation_steps', type=int, default=1)
 
@@ -34,7 +35,7 @@ args = parser.parse_args()
 set_random_seed(args.seed)
 
 os.makedirs(args.save_folder, exist_ok=True)
-
+results = {}
 device = torch.device("cuda")
 writer_config = SummaryWriter(os.path.join(args.output_dir, str(datetime.now().strftime('%Y.%m.%d-%H.%M.%S'))))
 reward_engine = RewardEngine(path=args.save_folder, writer_config=None, device=device)
@@ -108,6 +109,12 @@ for step, image_name in enumerate(os.listdir(args.image_folder)):
     res_text = res_text[res_text.find('<answer>'):]
     res_text = res_text[:res_text.find("<|eot_id|>")]
     score = reward_engine.get_reward(image_path, res_text)
+        
+    results[image_name] = score
+
+save_path = os.path.join(args.save_folder, "scores.json")
+with open(save_path, "w") as f:
+    json.dump(results, f, indent=2)
 
 
 

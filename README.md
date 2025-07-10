@@ -135,12 +135,11 @@ CleanBench serves as a crucial resource for training and evaluating intelligent 
 
 ## :computer: Getting Started
 
+For running the Gradio demo and performing inference, please refer to:
 
-For gradio demo runing, please follow:
+- [Gradio Demo](./docs/gradio_demo_and_inference.md)
 
-- [Gradio Demo](./docs/gradio_demo.md)
-
-For sft training and environment setup preparation, please follow:
+For SFT training and environment setup preparation, please follow:
 
 - [SFT Training](./docs/sft_training.md)
 
