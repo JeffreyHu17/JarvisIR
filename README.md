@@ -63,8 +63,8 @@
 ## :postbox: Updates
 <!-- - 2023.12.04: Add an option to speed up the inference process by adjusting the number of denoising steps. -->
 - 2025.7.6: Release [degradation synthesis codes](./degradation_synthesis/README.md)!
-- 2025.6.26: Released [inference code](./inference/README.md)!
-- 2025.6.17: Released [中文知乎解读](https://zhuanlan.zhihu.com/p/1917871544379631147), [JarvisIR：VLM掌舵,为自动驾驶装上“火眼金睛”,不惧恶劣天气](https://mp.weixin.qq.com/s/zYhqjMfThwwTK9nhXwYu4g) introducing JarvisIR! 📝
+- 2025.6.26: Released [inference code](./docs/inference.md)!
+- 2025.6.17: Released [中文知乎解读](https://zhuanlan.zhihu.com/p/1917871544379631147) and [JarvisIR：VLM掌舵,为自动驾驶装上“火眼金睛”,不惧恶劣天气](https://mp.weixin.qq.com/s/zYhqjMfThwwTK9nhXwYu4g) introducing JarvisIR! 📝
 - 2025.6.13: Released [Model weights (preview version)](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/preview) and [Huggingface Online demo](https://huggingface.co/spaces/LYL1015/JarvisIR) 🤗 🚀 ✨.
 - 2025.6.9: Released Gradio demo, restoration tools and SFT training code.
 - 2025.4.8: This repo is created.
