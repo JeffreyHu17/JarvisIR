@@ -5,20 +5,78 @@ sys.path.append(
 import argparse
 import torch
 from PIL import Image
-from transformers import AutoProcessor
+from transformers import AutoProcessor, LlavaForConditionalGeneration, set_seed
 from datetime import datetime
-from utils.model import build_model
-from utils.utils import set_random_seed
-from training.rlhf_engine import RewardEngine
+import numpy as np
+
+from agent_tools import RestorationToolkit
 from torch.utils.tensorboard import SummaryWriter
 import random
 import json
+import re
 
+def build_model(args=None,
+                model_architecture=None,
+                from_checkpoint=None):
+    
+    if model_architecture is None:
+        model_architecture = args.model_architecture
+
+    if from_checkpoint is None:
+        from_checkpoint = args.from_checkpoint
+    
+    if model_architecture=="llava":
+        model = LlavaForConditionalGeneration.from_pretrained(
+                from_checkpoint, 
+                low_cpu_mem_usage=True)
+        processor = AutoProcessor.from_pretrained(from_checkpoint)
+
+        image_processor = processor.image_processor
+        tokenizer = processor.tokenizer
+        tokenizer.padding_side = 'right'
+        
+        # freeze parameters
+        model.vision_tower.requires_grad_(False)
+        model.multi_modal_projector.requires_grad_(True)
+
+        if args.lang_decoder_update:
+            model.language_model.requires_grad_(True)
+        else:
+            model.language_model.requires_grad_(False)
+
+        return model, image_processor, tokenizer
+
+    else:
+        assert "Please add this model architeacture in build_model.py!"
+
+def set_random_seed(seed):
+    if seed is not None:
+        set_seed(seed)
+        random.seed(seed)
+        np.random.seed(seed)
+        torch.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+
+def extract_models_from_answer(answer):
+    """
+    Extract model names from the answer string using regex
+    
+    Args:
+        answer (str): The answer string containing model recommendations
+        
+    Returns:
+        list: List of extracted model names
+    """
+    # Pattern to match [type:xxx]:(model:xxx)
+    pattern = r'\[type:[^\]]+\]:\(model:([^)]+)\)'
+    models = re.findall(pattern, answer)
+    return models
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--from_checkpoint', type=str, default=None, help='Path to the model checkpoint for inference')
 parser.add_argument('--image_folder', type=str, default=None, help='Folder containing images for inference')
 parser.add_argument('--template', type=str, default='llama_3')
+parser.add_argument('--model_architecture', type=str, default='llava')
 parser.add_argument('--max_generation_length_of_sampling', type=int, default=384)
 parser.add_argument('--max_training_samples_num', type=int, default=10000)
 parser.add_argument('--seed', type=int, default=42)
@@ -38,7 +96,8 @@ os.makedirs(args.save_folder, exist_ok=True)
 results = {}
 device = torch.device("cuda")
 writer_config = SummaryWriter(os.path.join(args.output_dir, str(datetime.now().strftime('%Y.%m.%d-%H.%M.%S'))))
-reward_engine = RewardEngine(path=args.save_folder, writer_config=None, device=device)
+tool_engine = RestorationToolkit(score_weight=[0,0,0,0,0])
+
 model, image_processor, tokenizer = build_model(args=args)
 processor = AutoProcessor.from_pretrained(args.from_checkpoint)
 
@@ -108,7 +167,7 @@ for step, image_name in enumerate(os.listdir(args.image_folder)):
     res_text = processor.decode(res_all[0])
     res_text = res_text[res_text.find('<answer>'):]
     res_text = res_text[:res_text.find("<|eot_id|>")]
-    score = reward_engine.get_reward(image_path, res_text)
+    score = tool_engine.process_image(image_path, extract_models_from_answer(res_text))
 
     results[image_name] = {"score":score, "response": res_text, "instruction": instruction}
 
