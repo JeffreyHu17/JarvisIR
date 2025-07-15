@@ -63,6 +63,8 @@
 ## :postbox: Updates
 <!-- - 2023.12.04: Add an option to speed up the inference process by adjusting the number of denoising steps. -->
 - 2025.7.6: Release [degradation synthesis codes](./degradation_synthesis/README.md)!
+- 2025.6.26: Released [inference code](./inference/README.md)!
+- 2025.6.17: Released [中文知乎解读](https://zhuanlan.zhihu.com/p/1917871544379631147), [JarvisIR：VLM掌舵,为自动驾驶装上“火眼金睛”,不惧恶劣天气](https://mp.weixin.qq.com/s/zYhqjMfThwwTK9nhXwYu4g) introducing JarvisIR! 📝
 - 2025.6.13: Released [Model weights (preview version)](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/preview) and [Huggingface Online demo](https://huggingface.co/spaces/LYL1015/JarvisIR) 🤗 🚀 ✨.
 - 2025.6.9: Released Gradio demo, restoration tools and SFT training code.
 - 2025.4.8: This repo is created.
@@ -74,6 +76,7 @@
 - [Getting Started](#computer-getting-started) 
 - [Gradio Demo](./docs/gradio_demo.md) 
 - [SFT Training](./docs/sft_training.md)
+- [Inference](./inference/README.md)
 - [Degradation Synthesis](./degradation_synthesis/README.md)
 - [Restoration Tools](#toolbox-expert-models)
 - [Acknowledgements](#pray-acknowledgements)
@@ -135,17 +138,23 @@ CleanBench serves as a crucial resource for training and evaluating intelligent 
 
 ## :computer: Getting Started
 
-For running the Gradio demo and performing inference, please refer to:
 
-- [Gradio Demo and Inference](./docs/gradio_demo_and_inference.md)
+For gradio demo runing, please follow:
 
-For SFT training and environment setup preparation, please follow:
+- [Gradio Demo](./docs/gradio_demo.md)
+
+For sft training and environment setup preparation, please follow:
 
 - [SFT Training](./docs/sft_training.md)
 
 For image degradation data synthesis, please refer to:
 
 - [Degradation Generator](./degradation_synthesis/README.md)
+
+For inference and model usage, please follow:
+
+- [Inference Code](./docs/inference.md)
+
 
 ## :toolbox: Expert Models
 
@@ -170,11 +179,12 @@ JarvisIR integrates multiple expert restoration models to handle various types o
 ## :circus_tent: Checklist
 
 - [x] Release preview inference code and gradio demo
-- [x] Release SFT training 
-- [x] Release Hugging Face demo
+- [x] Release sft training 
+- [x] Release Inference code
+- [x] Release huggingFace online demo
 - [x] Release degradation synthesis code
-- [ ] Release MRRHF training code
-- [ ] Release CleanBench data
+- [ ] Release mrrhf training code
+- [ ] Release CleanBench dataset
 
 
 ## :pray: Acknowledgements
