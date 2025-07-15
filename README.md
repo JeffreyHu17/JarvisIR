@@ -143,17 +143,18 @@ For gradio demo runing, please follow:
 
 - [Gradio Demo](./docs/gradio_demo.md)
 
-For sft training and environment setup preparation, please follow:
+For inference and model usage, please follow:
 
-- [SFT Training](./docs/sft_training.md)
+- [Inference Code](./docs/inference.md)
 
 For image degradation data synthesis, please refer to:
 
 - [Degradation Generator](./degradation_synthesis/README.md)
 
-For inference and model usage, please follow:
+For sft training and environment setup preparation, please follow:
 
-- [Inference Code](./docs/inference.md)
+- [SFT Training](./docs/sft_training.md)
+
 
 
 ## :toolbox: Expert Models
