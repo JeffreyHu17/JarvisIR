@@ -149,9 +149,8 @@ def snowmaster_predict(model, input_img, output_dir, device='cuda'):
         output_image = tfs.ToPILImage()(output_tensor.squeeze().cpu())
     
     # Save image
-    save_path = os.path.join(output_dir, f"{img_name}_desnowed.png")
+    save_path = os.path.join(output_dir, f"{img_name}.png")
     output_image.save(save_path)
-    print(f"Processed: {save_path}")
     
     return save_path
 
@@ -219,7 +218,7 @@ def inference(model_path, input_path, output_path, model_name, device='cuda'):
             output_tensor = output_tensor.clamp_(0, 1)
             
             output_image = tfs.ToPILImage()(output_tensor.squeeze().cpu())
-            save_path = os.path.join(output_path, f"{image_id[0]}_desnowed.png")
+            save_path = os.path.join(output_path, f"{image_id[0]}.png")
             output_image.save(save_path)
     return save_path
 

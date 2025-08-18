@@ -7,8 +7,8 @@ This guide provides step-by-step instructions for setting up the environment and
 ### 1. Create and Activate Virtual Environment
 
 ```bash
-conda create -n sft_jarvisir python=3.10
-conda activate sft_jarvisir
+conda create -n JarvisirAll python=3.10
+conda activate JarvisirAll
 ```
 
 ### 2. Install Dependencies
@@ -20,6 +20,12 @@ cd RIDCP &&  python3 setup.py develop && cd ../..
 pip install -e .
 
 cd ../dependences/BasicSR
+pip install -e .
+
+cd ../IQA-PyTorch/
+pip install -e .
+
+cd ../llamaOld/
 pip install -e .
 
 cd ../../src/sft/xtuner

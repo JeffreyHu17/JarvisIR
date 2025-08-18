@@ -9,7 +9,7 @@ from transformers import AutoProcessor, LlavaForConditionalGeneration, set_seed
 from datetime import datetime
 import numpy as np
 
-from agent_tools import RestorationToolkit
+from src.mrrhf.rlhf_engine import RewardEngine
 from torch.utils.tensorboard import SummaryWriter
 import random
 import json
@@ -57,21 +57,6 @@ def set_random_seed(seed):
         torch.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
 
-def extract_models_from_answer(answer):
-    """
-    Extract model names from the answer string using regex
-    
-    Args:
-        answer (str): The answer string containing model recommendations
-        
-    Returns:
-        list: List of extracted model names
-    """
-    # Pattern to match [type:xxx]:(model:xxx)
-    pattern = r'\[type:[^\]]+\]:\(model:([^)]+)\)'
-    models = re.findall(pattern, answer)
-    return models
-
 parser = argparse.ArgumentParser()
 parser.add_argument('--from_checkpoint', type=str, default=None, help='Path to the model checkpoint for inference')
 parser.add_argument('--image_folder', type=str, default=None, help='Folder containing images for inference')
@@ -96,7 +81,7 @@ os.makedirs(args.save_folder, exist_ok=True)
 results = {}
 device = torch.device("cuda")
 writer_config = SummaryWriter(os.path.join(args.output_dir, str(datetime.now().strftime('%Y.%m.%d-%H.%M.%S'))))
-tool_engine = RestorationToolkit(score_weight=[0,0,0,0,0])
+reward_engine = RewardEngine(path=args.save_folder, writer_config=None, device=device)
 
 model, image_processor, tokenizer = build_model(args=args)
 processor = AutoProcessor.from_pretrained(args.from_checkpoint)
@@ -167,7 +152,7 @@ for step, image_name in enumerate(os.listdir(args.image_folder)):
     res_text = processor.decode(res_all[0])
     res_text = res_text[res_text.find('<answer>'):]
     res_text = res_text[:res_text.find("<|eot_id|>")]
-    score = tool_engine.process_image(image_path, extract_models_from_answer(res_text))
+    score = reward_engine.get_reward(image_path, res_text, passcheck=True)
 
     results[image_name] = {"score":score, "response": res_text, "instruction": instruction}
 

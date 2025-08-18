@@ -145,3 +145,5 @@ work_dirs
 src/sft/config
 checkpoints
 package
+dataset
+results

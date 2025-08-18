@@ -157,22 +157,24 @@ class RestorationToolkit():
                     img_path = hvicidnet_predict(self.models['hvicidnet'], img_path, output_dir, device=self.device)
         return os.path.abspath(img_path)  # Return the absolute path to the final image
     
-    def process_image(self, tools, img_path, output_dir, eval=False, is_score_weight=False):
-        """
-        Process an image and calculate its quality score.
-        
-        Args:
-            tools (list): A list of tool names to use for processing.
-            img_path (str): Path to the input image.
-            output_dir (str): Directory to save the output image.
-            eval (bool, optional): Whether to perform evaluation. Defaults to False.
-            is_score_weight (bool, optional): Whether to use weights for scoring. Defaults to False.
-            
-        Returns:
-            dict: A dictionary containing the output path and the calculated score.
-        """
-        # Call the processing function
+    def process_image(self, tools, img_path, output_dir, is_identify=False):
+        # 调用处理函数
+        tool_dict = {
+            "night": ["retinexformer_fivek", "hvicidnet", "lightdiff"],
+            "rain_drop": ["idt", "turbo_rain", "s2former"], 
+            "rain_drive": ["idt", "turbo_rain", "s2former"], 
+            "rain_streak": ["idt", "turbo_rain", "s2former"], 
+            "fog":["ridcp", "kanet"], 
+            "snow":["turbo_snow", "snowmaster"], 
+        }
+        if not is_identify:
+            for tool_name, tool_list in tool_dict.items():
+                if tool_name in img_path:
+                    con_tools = list(set(tools) & set(tool_list))
+                    if len(con_tools) == 0:
+                        print(f"tool {tools} not in {tool_list}!")
+                        return {"output_path": "error!", "score": [-2, -2, -2, -2, -2]}
+
         output_path = self.process_image_with_models(tools, img_path, output_dir)
-        # score = self.iqa.get_iqa_score(output_path, eval, is_score_weight)
-        score = [0,0,0,0,0]
-        return {"output_path": output_path, "score": score}
+        score = self.iqa.get_iqa_score(output_path)
+        return {"output_path": output_path, "score":score}
