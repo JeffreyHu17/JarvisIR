@@ -62,6 +62,7 @@
 
 ## :postbox: Updates
 <!-- - 2023.12.04: Add an option to speed up the inference process by adjusting the number of denoising steps. -->
+- 2025.8.19: Release [mrrhf training](./docs/mrrhf_training.md)!
 - 2025.7.6: Release [degradation synthesis codes](./degradation_synthesis/README.md)!
 - 2025.6.26: Released [inference code](./docs/inference.md)!
 - 2025.6.17: Released [中文知乎解读](https://zhuanlan.zhihu.com/p/1917871544379631147) and [JarvisIR：VLM掌舵,为自动驾驶装上“火眼金睛”,不惧恶劣天气](https://mp.weixin.qq.com/s/zYhqjMfThwwTK9nhXwYu4g) introducing JarvisIR! 📝
@@ -76,6 +77,7 @@
 - [Getting Started](#computer-getting-started) 
 - [Gradio Demo](./docs/gradio_demo.md) 
 - [SFT Training](./docs/sft_training.md)
+- [MRRHF Training](./docs/mrrhf_training.md)
 - [Inference](./inference/README.md)
 - [Degradation Synthesis](./degradation_synthesis/README.md)
 - [Restoration Tools](#toolbox-expert-models)
@@ -155,6 +157,10 @@ For sft training and environment setup preparation, please follow:
 
 - [SFT Training](./docs/sft_training.md)
 
+For mrrhf training, please follow:
+
+-[MRRHF Training](./docs/mrrhf_training.md)
+
 
 
 ## :toolbox: Expert Models
@@ -184,13 +190,13 @@ JarvisIR integrates multiple expert restoration models to handle various types o
 - [x] Release Inference code
 - [x] Release huggingFace online demo
 - [x] Release degradation synthesis code
-- [ ] Release mrrhf training code
+- [x] Release mrrhf training code
 - [ ] Release CleanBench dataset
 
 
 ## :pray: Acknowledgements
 
-We would like to express our gratitude to [HuggingGPT](https://github.com/microsoft/JARVIS), [XTuner](https://github.com/InternLM/xtuner), and [RRHF](https://github.com/GanjinZero/RRHF) for their valuable open-source contributions which have provided important technical references for our work.
+We would like to express our gratitude to [HuggingGPT](https://github.com/microsoft/JARVIS), [XTuner](https://github.com/InternLM/xtuner), [IQA-PyTorch](https://github.com/chaofengc/IQA-PyTorch.git), and [RRHF](https://github.com/GanjinZero/RRHF) for their valuable open-source contributions which have provided important technical references for our work.
 
 
 

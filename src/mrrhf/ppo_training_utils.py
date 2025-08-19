@@ -95,7 +95,7 @@ def sampling_llava_eval(actor_model,
 def sampling_llava_bs(actor_model,
             img, lang,
             attention_mask=None,
-            group = 5, # lkj：其实就是一个样本输出的个数
+            group = 5,
             beam_per_group = 2,
             max_new_tokens=384,
             diversity_penalty=2.0,
@@ -130,7 +130,7 @@ def sampling_llava_bs(actor_model,
     )
     
     eot_id = processor.encode("<|eot_id|>")[1]
-    batch_size = lang.size()[0] # lkj: batchsize个数，这个的形状时b、
+    batch_size = lang.size()[0]
 
     input_ids = []
     labels = []
@@ -150,28 +150,21 @@ def sampling_llava_bs(actor_model,
         reference_tools = []
         if image_paths[index] in reference_tool_map:
             reference_tools = reference_tool_map[image_paths[index]]
-        sub_lang = lang[index].unsqueeze(0) # lkj：这里是1， token长度
-        res = res_all[index*group:index*group+group][:, sub_lang.shape[1]:] # lkj：去除每组中原始提问部分，仅保留新生成部分
-        # res_text = processor.batch_decode(res)
-        # query_text = processor.batch_decode(sub_lang)[0]
-        # res_text = [r_text[r_text.find('<reason>'):] + processor.eos_token for r_text in res_text]
-        # res_text = [r_text[:r_text.find('<|eot_id|>') + len('<|eot_id|>')] for r_text in res_text]
+        sub_lang = lang[index].unsqueeze(0)
+        res = res_all[index*group:index*group+group][:, sub_lang.shape[1]:]
         for i, tool_text in enumerate(reference_tools):
             reference_tools[i] = normalize_tools(tool_text)
         device = res.device
 
-        for tool in reference_tools: # lkj：相当于拿sft的结果当作一次搜索，上面使用normalize_tools，就是为了成句 # 下面从1开始索引，去除开始标识符
+        for tool in reference_tools:
             encoded_tool = processor.encode(tool)[1:]
-            if len(encoded_tool) > res[0].size(0):  # lkj：这里其实就是max_len，就在后面
-                # reference_tools.remove(tool)
+            if len(encoded_tool) > res[0].size(0):
                 continue
             max_len = res[0].size(0)
             padded_tool = torch.full((max_len,), processor.pad_token_id, dtype=torch.long, device=device)
             padded_tool[:len(encoded_tool)] = torch.tensor(encoded_tool, device=device)
-            res = torch.cat((res, padded_tool.unsqueeze(0))) # lkj：这里是token化后的回答组合在一起
-            # reference_tools_final.append(tool)
+            res = torch.cat((res, padded_tool.unsqueeze(0)))
 
-        # res_text.extend(reference_tools_final) # lkj：把文本的形式添加到尾部
         query_target = torch.tensor([DST.DEFAULT_LABEL_PADDING_NUM] * (sub_lang[0].shape[0] - 1), device=device).long()
         dummy_target = torch.tensor([DST.DEFAULT_LABEL_PADDING_NUM], device=device).long()
 
@@ -184,7 +177,7 @@ def sampling_llava_bs(actor_model,
         tool_detail = {"identity_score":identity_score}
         for i, r_text in enumerate(res):
             weight_error = None
-            r_text = processor.decode(r_text) # lkj: 解码出输出文本
+            r_text = processor.decode(r_text)
             
             if r_text.find("<image>") != -1:
                 tool_detail[r_text] = "too many image!!!!"
@@ -202,26 +195,26 @@ def sampling_llava_bs(actor_model,
             r_text = r_text[r_text.find("<answer>"):]
             temp_tools = get_tools_from_text(r_text)
             intersection = set(temp_tools) & set(ALL_TOOLS)
-            if not weight_error and (len(temp_tools) == 0 or intersection != set(temp_tools)): # lkj：如果没有工具，或者工具不在ALL_TOOLS中
+            if not weight_error and (len(temp_tools) == 0 or intersection != set(temp_tools)):
                 print("no tools: ", r_text)
                 tool_detail[r_text] = "no tools!!!!"
                 weight_error = 0.7
 
             size = len(res_text_set)
             res_text_set.add(get_tools_from_text(r_text))
-            if len(res_text_set) > size: # lkj：只取处理方式不同的序列相同的不取
+            if len(res_text_set) > size:
                 res_tmp = res[i]
                 mask = res_tmp.eq(eot_id)
-                indices = torch.nonzero(mask, as_tuple=False) # lkj：返回非零的索引
-                if indices.nelement() > 0: # lkj：就是返回第一个列表的元素个数
+                indices = torch.nonzero(mask, as_tuple=False)
+                if indices.nelement() > 0:
                     first_match_index = indices[0].item()  
                     res_tmp = res_tmp[:first_match_index + 1]
-                    if res_tmp[-1].item() != processor.eos_token_id: # lkj：整个对话结束的标志
-                        res_tmp = torch.cat((res_tmp, torch.tensor([processor.eos_token_id], device=res_tmp.device))) # lkj: 其实就是找出结束token后面的都不要，可能是由填充输出
+                    if res_tmp[-1].item() != processor.eos_token_id:
+                        res_tmp = torch.cat((res_tmp, torch.tensor([processor.eos_token_id], device=res_tmp.device)))
                 
                 reward_info = reward_engine.get_reward(image_paths[index], r_text)
                 if not weight_error and "error!" == reward_info[0]:
-                    tool_detail[r_text] = "no reward!!!!" ## XXX 只要有no answer出现这里逻辑就没问题
+                    tool_detail[r_text] = "no reward!!!!" 
                     weight_error = 0.8
                 if weight_error:
                     reward_error = copy.deepcopy(identity_score)
@@ -229,9 +222,9 @@ def sampling_llava_bs(actor_model,
                     img_score.append(reward_error)
                 else:
                     img_score.append(reward_info[1])
-                input_ids.append(torch.cat((sub_lang[0], res_tmp), dim=-1)) # lkj：拼成一个正常的输出，包含输入部分以及输出部分
+                input_ids.append(torch.cat((sub_lang[0], res_tmp), dim=-1)) 
                 labels.append(torch.cat((query_target, res_tmp, dummy_target), dim=0))
-                repeat_penalty.append(cal_repeat_penalty(r_text)) # lkj：判断工具出现的次数
+                repeat_penalty.append(cal_repeat_penalty(r_text)) 
                 batch_count += 1
                 # debug
                 tool_detail[get_tools_from_text(r_text)] = {"score:": img_score[-1], "repeat_penalty": cal_repeat_penalty(r_text), "error_weight": weight_error if weight_error else 1}
@@ -240,7 +233,7 @@ def sampling_llava_bs(actor_model,
         if batch_count == 0:
             tool_detail["no!!!"] = "big bug!!!"
             print("big bug!!!")
-        # 对列做z-score归一化，然后相加，得到n个score
+
         img_score = torch.tensor(img_score, device=device)
         identity_score = torch.tensor(identity_score, device=device)
         
@@ -262,7 +255,7 @@ def sampling_llava_bs(actor_model,
             score_max = torch.max(img_score_new)
 
         img_score_new[~mask] = -2.0
-        for i, rp in enumerate(repeat_penalty): # lkj：对重复的进行惩罚，就小如果重复 # TODO：这里考虑要不要改，scunet
+        for i, rp in enumerate(repeat_penalty): 
             if img_score_new[i] > 0:
                 img_score_new[i] /= score_max
                 img_score_new[i] -= rp
@@ -274,18 +267,17 @@ def sampling_llava_bs(actor_model,
         all_score.extend(img_score_new)
     input_ids = torch.nn.utils.rnn.pad_sequence(
             input_ids, batch_first=True, padding_value=processor.pad_token_id
-    ) # lkj：对列表的张量进行填充
+    ) 
     labels = torch.nn.utils.rnn.pad_sequence(
         labels, batch_first=True, padding_value=DST.DEFAULT_LABEL_PADDING_NUM
     )
     actor_model.train()
     scores=torch.tensor(all_score, device=device).float()
-    # print(scores)
     return dict(
-            input_ids=input_ids, # lkj：标准的带答案输入，是否提问与回答中间有分节符
-            attention_mask=input_ids.ne(processor.pad_token_id), # lkj：将填充位置置为false
-            labels=labels, # lkj：对答案出不是加label
-            scores=scores, # lkj：# XXX：这里已更改不涉及梯度吧？ 不涉及提取传播
+            input_ids=input_ids,
+            attention_mask=input_ids.ne(processor.pad_token_id),
+            labels=labels, 
+            scores=scores, 
             batch_count=all_batch_count,
             tools_details=all_tools_details
         )
@@ -323,8 +315,8 @@ def compute_logprobs_from_actor_and_ref(actor_model,
                     output_hidden_states=True)
             logits = outputs.logits_drop_image
 
-    logprobs = gather_log_probs(logits[:, :-1, :], input_ids[:, 1:]) # lkj：这个logic应该是所有词表的，因为是自回归，所以对于logits而言，输出第一个是无效的，对应的标签是第二个索引的inputs
-    ref_logprobs = None # 其实可以优化指令部分，也可以不优化，这里是都优化，因为输入指令的句式不固定
+    logprobs = gather_log_probs(logits[:, :-1, :], input_ids[:, 1:]) 
+    ref_logprobs = None 
     
     return logprobs, ref_logprobs
 

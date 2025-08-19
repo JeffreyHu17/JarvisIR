@@ -26,9 +26,6 @@ sys.path.append(
 from utils.data import build_dataset, DataCollatorPadToMaxLenForPPOTraining, split_dataset, shuffle_dataset
 from utils.utils import print_rank_0, to_device, save_hf_format, set_random_seed, get_all_reduce_mean
 
-# TODO: 
-# 1. 全是turbo: ①得分更高 ②长度归一化去掉
-# 2. 输出不规范，给一个更小的reward
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -340,11 +337,11 @@ def main():
 
     if args.local_rank == 0:
         logging.basicConfig(
-            level=logging.INFO,  # 设置日志级别为INFO
-            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',  # 设置日志格式
-            datefmt='%Y-%m-%d %H:%M:%S',  # 设置时间格式
-            filename=os.path.join(args.output_dir, 'rrhf_training.log'),  # 设置日志文件名
-            filemode='w'  # 设置日志文件模式，'w'为覆盖模式，'a'为追加模式
+            level=logging.INFO,
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S',
+            filename=os.path.join(args.output_dir, 'rrhf_training.log'),
+            filemode='w'
         )
 
     if args.gradient_checkpointing:
@@ -477,8 +474,8 @@ def main():
             dist.all_reduce(success_flag, op=dist.ReduceOp.MIN)
             if success_flag.item() == 0:
                 logging.info(f"pass error!!")
-                rlhf_engine.actor.zero_grad()  # 使用DeepSpeed引擎清零梯度（非actor.zero_grad()）
-                continue  # 跳过后续backward和step
+                rlhf_engine.actor.zero_grad()
+                continue
 
             rrhf_loss = 0
             sft_loss = 0

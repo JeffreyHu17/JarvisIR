@@ -7,7 +7,6 @@ tb_logger*
 pretrained_models
 wandb/*
 tmp*/*
-*.sh
 .vscode*
 .github
 # ignored files

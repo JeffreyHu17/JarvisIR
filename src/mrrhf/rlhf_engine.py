@@ -102,7 +102,7 @@ class RewardEngine():
         else:
             response = self.tool_engine.process_image(tools, docker_path, output_dir, is_identify=False)
         score = response["score"]
-        if not passcheck and (len(tools) == 0 and tools_text != "identity"): # XXX:这里check一下是不是正确逻辑
+        if not passcheck and (len(tools) == 0 and tools_text != "identity"):
             print(f"debug: get reward tool:{tools}, tools_text:{tools_text}, return all -2 !" )
             return "error!", [-2, -2, -2, -2, -2]
         if response["output_path"] != "error!":
