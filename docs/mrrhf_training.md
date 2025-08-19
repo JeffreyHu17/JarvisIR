@@ -7,10 +7,10 @@ This guide provides step-by-step instructions for performing mrrhf training.
 1. **Environment Setup**  
     Follow the [SFT Training Guide](./sft_training.md#environment-setup) to setup environment and activate it:
     ```bash
-    conda activate JarvisirAll
+    conda activate JarvisIR
     ```
 2. **SFT Training**  
-    Follow the [SFT Training Guide](./sft_training.md) for supervised fine-tuning training to obtain the initial weights of pre-training
+    Follow the [SFT Training Guide](./sft_training.md) for supervised fine-tuning training to obtain the initial weights of pre-training. You can also use the [weights](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/preview) we trained with sft
 
 3. **Generate Offline Data**  
     ​​Use [python script](../src/mrrhf/generate_offline_data.py) to sample offline data with weights from SFT training.​
@@ -26,4 +26,5 @@ Run the [training script](../train.sh) to perform mrrhf training
 ```bash
 train.sh -c Model_Path -i Image_folder_path -d Data_files -o Offline_data -p Output_Path 
 ```
+
 

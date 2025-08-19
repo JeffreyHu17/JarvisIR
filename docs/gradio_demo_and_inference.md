@@ -8,7 +8,7 @@ Please follow the environment setup instructions in the [SFT Training Guide](./s
 
 Make sure you have activated the conda environment:
 ```bash
-conda activate JarvisirAll
+conda activate JarvisIR
 ```
 
 

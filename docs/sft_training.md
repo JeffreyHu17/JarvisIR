@@ -7,8 +7,8 @@ This guide provides step-by-step instructions for setting up the environment and
 ### 1. Create and Activate Virtual Environment
 
 ```bash
-conda create -n JarvisirAll python=3.10
-conda activate JarvisirAll
+conda create -n JarvisIR python=3.10
+conda activate JarvisIR
 ```
 
 ### 2. Install Dependencies

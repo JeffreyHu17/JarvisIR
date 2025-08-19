@@ -8,7 +8,7 @@ This guide provides instructions for running inference with JarvisIR to analyze 
 
 Follow the [SFT Training Guide](./sft_training.md#environment-setup) to setup environment and activate it:
 ```bash
-conda activate JarvisirAll
+conda activate JarvisIR
 ```
 
 ### Model Weights
