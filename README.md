@@ -159,7 +159,7 @@ For sft training and environment setup preparation, please follow:
 
 For mrrhf training, please follow:
 
--[MRRHF Training](./docs/mrrhf_training.md)
+- [MRRHF Training](./docs/mrrhf_training.md)
 
 
 
