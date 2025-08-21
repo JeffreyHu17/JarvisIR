@@ -62,7 +62,7 @@
 
 ## :postbox: Updates
 <!-- - 2023.12.04: Add an option to speed up the inference process by adjusting the number of denoising steps. -->
-- 2025.8.21: Release [CleanBench-Real-80K](https://huggingface.co/datasets/LYL1015/CleanBench)🤗!
+- 2025.8.21: Release [CleanBench-Real-80K](https://huggingface.co/datasets/LYL1015/CleanBench)🚀, please download for training and evaluation!
 - 2025.8.19: Release [mrrhf training](./docs/mrrhf_training.md)!
 - 2025.7.6: Release [degradation synthesis codes](./degradation_synthesis/README.md)!
 - 2025.6.26: Released [inference code](./docs/inference.md)!
