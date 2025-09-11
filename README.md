@@ -192,7 +192,7 @@ JarvisIR integrates multiple expert restoration models to handle various types o
 - [x] Release huggingFace online demo
 - [x] Release degradation synthesis code
 - [x] Release mrrhf training code
-- [ ] Release CleanBench dataset
+- [x] Release CleanBench-Real-80k dataset
 
 
 ## :pray: Acknowledgements
