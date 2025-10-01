@@ -8,9 +8,9 @@ from transformers import AdamW
 from transformers import get_scheduler
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
-from utils.model import build_model
-from utils.ds_utils import get_train_ds_config
-from utils.utils import get_optimizer_grouped_parameters, print_rank_0
+from .utils.model import build_model
+from .utils.ds_utils import get_train_ds_config
+from .utils.utils import get_optimizer_grouped_parameters, print_rank_0
 import re
 from agent_tools import RestorationToolkit
 class DeepSpeedRLHFEngine():

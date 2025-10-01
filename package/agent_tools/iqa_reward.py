@@ -31,7 +31,7 @@ class IQAScore:
         self.score_weight = score_weight if score_weight is not None else [1, 1, 1, 1, 1]
         
         # Path to the QAlign model
-        qalign_path = 'xxx'
+        qalign_path = 'q-future/one-align'
         
         # Initialize metrics based on weights
         print("Loading IQA metrics...")

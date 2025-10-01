@@ -8,12 +8,13 @@ from PIL import Image
 from transformers import AutoProcessor, LlavaForConditionalGeneration, set_seed
 from datetime import datetime
 import numpy as np
-
+import megfile
 from src.mrrhf.rlhf_engine import RewardEngine
 from torch.utils.tensorboard import SummaryWriter
 import random
-import json
-import re
+import csv
+import tqdm
+
 
 def build_model(args=None,
                 model_architecture=None,
@@ -39,10 +40,7 @@ def build_model(args=None,
         model.vision_tower.requires_grad_(False)
         model.multi_modal_projector.requires_grad_(True)
 
-        if args.lang_decoder_update:
-            model.language_model.requires_grad_(True)
-        else:
-            model.language_model.requires_grad_(False)
+        model.language_model.requires_grad_(False)
 
         return model, image_processor, tokenizer
 
@@ -78,7 +76,7 @@ args = parser.parse_args()
 set_random_seed(args.seed)
 
 os.makedirs(args.save_folder, exist_ok=True)
-results = {}
+results = []
 device = torch.device("cuda")
 writer_config = SummaryWriter(os.path.join(args.output_dir, str(datetime.now().strftime('%Y.%m.%d-%H.%M.%S'))))
 reward_engine = RewardEngine(path=args.save_folder, writer_config=None, device=device)
@@ -130,7 +128,7 @@ prompts_query2 = [
 ]
 
 
-for step, image_name in enumerate(os.listdir(args.image_folder)):
+for step, image_name in tqdm.tqdm(enumerate(os.listdir(args.image_folder))):
     image_path = os.path.join(args.image_folder, image_name)
     instruction = prompts_query2[random.randint(0, len(prompts_query2)-1)]
     prompt = (f"<|start_header_id|>user<|end_header_id|>\n\n<image>\n{instruction}<|eot_id|>"
@@ -152,14 +150,20 @@ for step, image_name in enumerate(os.listdir(args.image_folder)):
     res_text = processor.decode(res_all[0])
     res_text = res_text[res_text.find('<answer>'):]
     res_text = res_text[:res_text.find("<|eot_id|>")]
-    score = reward_engine.get_reward(image_path, res_text, passcheck=True)
+    _, score = reward_engine.get_reward(image_path, res_text, passcheck=True)
+    print(len(score))
+    results.append({"image_name": image_name, "qalign_score":score[0], "maniqa_score":score[1],"musiq_score":score[2],"clipiqa_score":score[3], "math.exp(-niqe_score / 10.0)":score[4], "response": res_text, "instruction": instruction})
 
-    results[image_name] = {"score":score, "response": res_text, "instruction": instruction}
+save_path = os.path.join(args.save_folder, "scores.csv")
 
-save_path = os.path.join(args.save_folder, "scores.json")
-with open(save_path, "w") as f:
-    json.dump(results, f, indent=2)
+with megfile.smart_open(save_path, 'w', newline='') as f:
+    fieldnames = ["image_name", "qalign_score", "maniqa_score", "musiq_score", "clipiqa_score", "math.exp(-niqe_score / 10.0)", "response", "instruction"]
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+    writer.writeheader()
+    for row in results:
+        writer.writerow(row)
 
+print(f"Saved group CSV for {save_path}, length： {len(results)}")
 
 
 
