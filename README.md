@@ -62,7 +62,8 @@
 
 ## :postbox: Updates
 <!-- - 2023.12.04: Add an option to speed up the inference process by adjusting the number of denoising steps. -->
-- 2025.8.21: Release [CleanBench-Real-80K (train and test)](https://huggingface.co/datasets/LYL1015/CleanBench)🚀, please download for training and evaluation!
+- 2025.10.1: Release [CleanBench-Test (Paper test)](https://huggingface.co/datasets/LYL1015/CleanBench/blob/main/cleanbench_PaperTest.zip)🚀, please download for reproducibility!
+- 2025.8.21: Release [CleanBench-Real-80K (train and test)](https://huggingface.co/datasets/LYL1015/CleanBench)🚀, please download for training and evaluation! This test set contains a wider variety of degradation types and scenarios. It differs from the test set used in the paper.
 - 2025.8.19: Release [mrrhf training](./docs/mrrhf_training.md)!
 - 2025.7.6: Release [degradation synthesis codes](./degradation_synthesis/README.md)!
 - 2025.6.26: Released [inference code](./docs/inference.md)!
@@ -79,7 +80,7 @@
 - [Gradio Demo](./docs/gradio_demo.md) 
 - [SFT Training](./docs/sft_training.md)
 - [MRRHF Training](./docs/mrrhf_training.md)
-- [Inference](./inference/README.md)
+- [Inference](./docs/inference.md)
 - [Degradation Synthesis](./degradation_synthesis/README.md)
 - [Restoration Tools](#toolbox-expert-models)
 - [Acknowledgements](#pray-acknowledgements)
