@@ -12,17 +12,17 @@ conda activate JarvisIR
 ```
 
 
-## Download Preview Weights
+## Download Model Weights
 
-To run the Gradio demo, you need to download the preview weights from Hugging Face and place them in the correct location:
+To run the Gradio demo, you need to download the model weights from Hugging Face and place them in the correct location:
 
-1. Download the JarvisIR preview weights from [Hugging Face repository](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/preview)
+1. Download the JarvisIR weights from [Hugging Face repository](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/mrrhf)
 2. Create the weights directory (if it doesn't exist):
    ```bash
    cd JarvisIR/
-   mkdir -p ./checkpoints/pretrained/preview/
+   mkdir -p ./checkpoints/pretrained/
    ```
-3. Place the downloaded weight files in the `./checkpoints/pretrained/preview/` directory
+3. Place the downloaded weight files in the `./checkpoints/pretrained/` directory
 
 
 ## Running the Demo
@@ -30,7 +30,7 @@ To run the Gradio demo, you need to download the preview weights from Hugging Fa
 Once the environment is set up and activated, you can run the Gradio demo with the following command from the root directory of the project:
 
 ```bash
-python demo_gradio.py --model_path ./checkpoints/pretrained/preview/ --cuda_device 0
+python demo_gradio.py --model_path ./checkpoints/pretrained/ --cuda_device 0
 ```
 
 The command accepts the following parameters:
@@ -48,7 +48,7 @@ This will launch a web interface at `http://0.0.0.0:7866` where you can interact
 If you want to run inference using the provided script, follow the commands below:
 
 ```bash
-python inference.py --from_checkpoint ./checkpoints/pretrained/preview/ --image_folder ./data/inference/images/ --save_folder ./data/inference/results/
+python inference.py --from_checkpoint ./checkpoints/pretrained/ --image_folder ./data/inference/images/ --save_folder ./data/inference/results/
 ```
 The command accepts the following parameters:
 - `--from_checkpoint`: Path to the model checkpoint directory (mandatory)
