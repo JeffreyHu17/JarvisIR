@@ -13,8 +13,8 @@ conda activate JarvisIR
 
 ### Model Weights
 
-1. Download from [Hugging Face repository](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/preview)
-2. Create checkpoint directory: `mkdir -p ./checkpoints/pretrained/preview/`
+1. Download from [Hugging Face repository](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/mrrhf)
+2. Create checkpoint directory: `mkdir -p ./checkpoints/pretrained/`
 3. Place downloaded files in the checkpoint directory
 
 ## Usage
@@ -23,7 +23,7 @@ Basic inference command:
 
 ```bash
 python inference.py \
-    --from_checkpoint ./checkpoints/pretrained/preview/ \
+    --from_checkpoint ./checkpoints/pretrained/ \
     --image_folder ./data/inference/images/ \
     --save_folder ./data/inference/results/
 ```
