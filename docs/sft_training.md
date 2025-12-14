@@ -14,27 +14,29 @@ conda activate JarvisIR
 ### 2. Install Dependencies
 
 ```bash
+cd src/sft/xtuner
+
+# Install required packages for Xtuner
+pip install -r requirements.txt
+
+# Install XTuner with all features
+pip install -e '.[all]'
+
+cd ../../../dependences/BasicSR
+pip install -e .
+cd ../..
+
+cd dependences/IQA-PyTorch/
+pip install -e .
+cd ../..
+
 pip install -r requirements.txt
 cd package/agent_tools/Retinexformer &&  python3 setup.py develop --no_cuda_ext && cd ..
 cd RIDCP &&  python3 setup.py develop && cd ../..
 pip install -e .
 
-cd ../dependences/BasicSR
+cd ../dependences/llamaOld/
 pip install -e .
-
-cd ../IQA-PyTorch/
-pip install -e .
-
-cd ../llamaOld/
-pip install -e .
-
-cd ../../src/sft/xtuner
-
-# Install required packages
-pip install -r requirements.txt
-
-# Install XTuner with all features
-pip install -e '.[all]'
 ```
 
 ### 3. Verify Installation

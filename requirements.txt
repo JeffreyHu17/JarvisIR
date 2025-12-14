@@ -180,7 +180,7 @@ transformers-stream-generator==0.0.5
 triton==3.1.0
 typeguard==4.3.0
 typer==0.15.2
-typing_extensions==4.12.2
+typing_extensions==4.15.0
 tzdata==2025.1
 urllib3==2.3.0
 uvicorn==0.34.0
@@ -195,3 +195,5 @@ yacs==0.1.8
 yapf==0.43.0
 yarl==1.18.3
 zipp==3.19.2
+setuptools==75.0.0
+megfile==5.0.2

@@ -14,15 +14,7 @@ conda activate JarvisIR
 
 ## Download Model Weights
 
-To run the Gradio demo, you need to download the model weights from Hugging Face and place them in the correct location:
-
-1. Download the JarvisIR weights from [Hugging Face repository](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/mrrhf)
-2. Create the weights directory (if it doesn't exist):
-   ```bash
-   cd JarvisIR/
-   mkdir -p ./checkpoints/pretrained/
-   ```
-3. Place the downloaded weight files in the `./checkpoints/pretrained/` directory
+To run the Gradio demo, you need to download the model weights from Hugging Face and place them in the correct location. You can follow [inference.md](./inference.md#model-weights) to finish it.
 
 
 ## Running the Demo

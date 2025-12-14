@@ -255,7 +255,7 @@ class MPLUGOwl2LlamaForCausalLM(LlamaForCausalLM, MPLUGOwl2MetaForCausalLM):
     def __init__(self, config):
         super(LlamaForCausalLM, self).__init__(config)
         self.model = MPLUGOwl2LlamaModel(config)
-        path = '/apdcephfs_cq8/share_1367250/lyl1015/projects/jarvisartV2R/mrrhf/checkpoints/dcc603b95aa0ebd82afa696d4a1e20d11fc80ddb'
+        path = None # Replace it with the downloaded q-align weight path; be sure to use an absolute path.
         self.tokenizer = LlamaTokenizer.from_pretrained(path)
         self.image_processor = CLIPImageProcessor.from_pretrained(path)
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)

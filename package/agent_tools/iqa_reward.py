@@ -31,14 +31,14 @@ class IQAScore:
         self.score_weight = score_weight if score_weight is not None else [1, 1, 1, 1, 1]
         
         # Path to the QAlign model
-        qalign_path = 'q-future/one-align'
+        qalign_path = None
         
         # Initialize metrics based on weights
         print("Loading IQA metrics...")
         
         # Only load models with non-zero weights to save memory
         if self.score_weight:
-            self.qalign_metric = AutoModelForCausalLM.from_pretrained(qalign_path, trust_remote_code=True, torch_dtype=torch.float16, device_map="auto")
+            self.qalign_metric = AutoModelForCausalLM.from_pretrained(qalign_path, trust_remote_code=True, torch_dtype=torch.float16, device_map="auto")   
             self.maniqa_metric = pyiqa.create_metric('maniqa', device=self.device)
             self.musiq_metric = pyiqa.create_metric('musiq', device=self.device)
             self.clipiqa_metric = pyiqa.create_metric('clipiqa', device=self.device)

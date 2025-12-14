@@ -13,9 +13,18 @@ conda activate JarvisIR
 
 ### Model Weights
 
-1. Download from [Hugging Face repository](https://huggingface.co/LYL1015/JarvisIR/tree/main/pretrained/mrrhf)
-2. Create checkpoint directory: `mkdir -p ./checkpoints/pretrained/`
-3. Place downloaded files in the checkpoint directory
+1. Create checkpoint directory: `mkdir -p ./checkpoints/`
+2. use *Hugging Face CLI* to download checkpoints.
+```bash
+cd checkpoints
+hf download LYL1015/JarvisIR --local-dir ./
+mkdir -p q_align
+cd q_align
+hf download q-future/one-align --local-dir ./
+```
+3. Replace [path = None](../dependences/qalign/modeling_mplug_owl2.py) with the absolute path of ```q_align```. 
+4. Replace [qalign_path = None](../package/agent_tools/iqa_reward.py) with the absolute path of ```q_align```.
+5. Replace ```checkpoints/q_align/modeling_llama2.py``` and ```checkpoints/q_align/modeling_mplug_owl2.py``` with ```dependences/qalign/modeling_llama2.py``` and ```dependences/qalign/modeling_mplug_owl2.py```.
 
 ## Usage
 
